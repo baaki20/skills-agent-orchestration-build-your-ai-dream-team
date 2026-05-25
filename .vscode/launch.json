@@ -5,13 +5,12 @@
       "name": "Run Project Pulse Dashboard",
       "type": "pwa-chrome",
       "request": "launch",
-      "cwd": "${workspaceFolder}/app",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "5500"],
       "url": "http://localhost:5500/index.html",
+      "preLaunchTask": "Run Project Pulse Server",
+      "webRoot": "${workspaceFolder}/app",
       "serverReadyAction": {
-        "action": "openExternally",
         "pattern": "Serving HTTP on",
+        "action": "openExternally",
         "uriFormat": "http://localhost:%s/index.html"
       }
     }
