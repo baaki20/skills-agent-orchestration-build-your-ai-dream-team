@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "name": "Onboarding Redesign",
+      "owner": "Amina Khalid",
+      "status": "At Risk",
+      "recentActivity": "Blocked by API instability",
+      "priority": "High"
+    },
+    {
+      "name": "Billing Reports",
+      "owner": "Jon Park",
+      "status": "Active",
+      "recentActivity": "Deployed data pipeline update",
+      "priority": "Medium"
+    },
+    {
+      "name": "Mobile Performance",
+      "owner": "Ravi Patel",
+      "status": "Complete",
+      "recentActivity": "Merged PR for lazy loading",
+      "priority": "Low"
+    },
+    {
+      "name": "Marketing Site Refresh",
+      "owner": "Lina Gomez",
+      "status": "Active",
+      "recentActivity": "Working on hero assets",
+      "priority": "Medium"
+    }
+  ]
+}

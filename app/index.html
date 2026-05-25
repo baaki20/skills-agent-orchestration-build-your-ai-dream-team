@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Pulse</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <header class="dashboard-header">
+      <h1>Project Pulse</h1>
+      <div class="dashboard-controls" aria-hidden="true">
+        <!-- Designer will provide polished controls -->
+      </div>
+    </header>
+
+    <main>
+      <section class="projects-grid" id="projectsGrid" aria-live="polite">
+        <p class="loading">Loading projects…</p>
+      </section>
+    </main>
+
+    <footer class="dashboard-footer">
+      <small>Project Pulse — demo dashboard</small>
+    </footer>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('projectsGrid');
+    fetch('project-data.json')
+      .then(resp => {
+        if (!resp.ok) throw new Error('Network response was not ok');
+        return resp.json();
+      })
+      .then(data => {
+        grid.innerHTML = '';
+        const projects = data.projects || [];
+        if (projects.length === 0) {
+          grid.innerHTML = '<p class="no-results">No projects found.</p>';
+          return;
+        }
+        projects.forEach(p => {
+          const card = document.createElement('article');
+          card.className = 'project-card';
+          card.tabIndex = 0;
+
+          const title = document.createElement('h2');
+          title.className = 'project-name';
+          title.textContent = p.name || 'Untitled Project';
+
+          const meta = document.createElement('div');
+          meta.className = 'project-meta';
+
+          const status = document.createElement('div');
+          status.className = 'project-status';
+          status.textContent = p.status || 'Unknown';
+
+          const recent = document.createElement('div');
+          recent.className = 'project-recent';
+          recent.textContent = p.recentActivity || '';
+
+          const priority = document.createElement('div');
+          priority.className = 'project-priority';
+          priority.textContent = p.priority || '';
+
+          meta.appendChild(status);
+          meta.appendChild(recent);
+          meta.appendChild(priority);
+
+          card.appendChild(title);
+          card.appendChild(meta);
+
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        grid.innerHTML = '<p class="error">Could not load project data.</p>';
+      });
+  });
+  </script>
+</body>
+</html>
